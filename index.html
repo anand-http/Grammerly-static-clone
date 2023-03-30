@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammerly k Papa</title>
+    <style>
+        * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  padding: 30px;
+ 
+}
+
+h2 {
+  color: rgb(43, 45, 56);
+  text-align: center;
+  font-size: 48px;
+  letter-spacing: -0.2px;
+}
+
+@media screen and (max-width:768px) {
+    h2{
+        font-size: 35px;
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
+    .counter-container{
+        flex-direction: column;
+        
+    }
+    .counter-container :nth-child(2){
+      
+        margin-top: -50px;
+    }
+}
+
+
+p {
+  max-width: 600px;
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 80px;
+  font-size: 17px;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  line-height: 1.6;
+}
+
+textarea {
+  width: 100%;
+  height: 316px;
+  background-color: rgb(255, 255, 255);
+  padding: 30px;
+  position: relative;
+  outline: none;
+  box-shadow: 0 12px 48px 0px rgb(109 117 141 /20%);
+  border: 0.5px solid rgb(231, 233, 245);
+  border-radius: 16px;
+  resize: none;
+}
+
+textarea:focus{
+    border: 0.3px solid rgba(43,45,56,0.3);
+}
+
+button{
+    background-color: rgb(17,166,131);
+    color: #fff;
+    border-radius: 6px;
+    padding: 16px 32px;
+    border: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin: auto;
+    display: flex;
+    position: relative;
+    margin-top: -80px;
+
+}
+
+button:focus,button:hover{
+    background-color: rgb(42,201,164);
+    box-shadow: 0 5px 30px 0 rgba(0 0 0 .1);
+}
+
+.counter-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+
+    </style>
+</head>
+
+<body onload="refresh()">
+    <main>
+        <div class="container">
+            <h2>Real Time character Counter</h2>
+            <p>Check your English text for grammar ,spelling and puctuation errors.</p>
+
+
+            <textarea id="textarea" class="textarea" maxlength="150" placeholder="Please write here" >
+            </textarea>
+
+            <button onclick="copyText()">Copy Text</button>
+
+            <div class="counter-container">
+                <p>Total Char: <span id="total-counter">0</span> </p>
+                <p>Remaining Char: <span id="remaining-counter">150</span></p>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+
+
+const userInput = document.getElementById("textarea");
+let totalCount = document.getElementById("total-counter");
+let remainingCount = document.getElementById("remaining-counter");
+
+let Character = 0;
+
+const updateCounter = () => {
+  Character = userInput.value.length;
+  totalCount.innerHTML = Character;
+  remainingCount.innerHTML = 150 - Character;
+};
+
+userInput.addEventListener("keyup", () => updateCounter());
+
+const copyText = () => {
+userInput.select();
+userInput.setSelectionRange(0,170);
+navigator.clipboard.writeText(userInput.value);
+
+
+};
+
+
+const refresh=()=>{
+    userInput.innerHTML="";
+}
+
+    </script>
+
+</body>
+
+</html>
